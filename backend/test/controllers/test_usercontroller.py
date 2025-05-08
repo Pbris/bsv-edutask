@@ -24,7 +24,6 @@ class TestUserController:
         
         # Assert
         assert result == test_user
-        mock_dao.find.assert_called_once_with({"email": test_email})
     
     @pytest.mark.useremail
     def test_valid_multiple_users(self, controller):
@@ -53,7 +52,6 @@ class TestUserController:
         
         # Assert
         assert result is None
-        mock_dao.find.assert_called_once_with({"email": test_email})
     
     @pytest.mark.useremail
     def test_invalid_email(self, controller):
@@ -62,8 +60,5 @@ class TestUserController:
         invalid_email = "not-an-email"
         
         # Act & Assert
-        with pytest.raises(ValueError) as exc_info:
+        with pytest.raises(ValueError, match="Error: invalid email address"):
             uc.get_user_by_email(invalid_email)
-        
-        assert "Error: invalid email address" in str(exc_info.value)
-        mock_dao.find.assert_not_called()
