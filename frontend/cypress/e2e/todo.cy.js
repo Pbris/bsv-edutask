@@ -1,7 +1,5 @@
 import Converter from '../../src/Util/Converter'
 
-
-
 describe('Running tests for R8', () => {
     // define variables that we need on multiple occasions
     let uid // user id
