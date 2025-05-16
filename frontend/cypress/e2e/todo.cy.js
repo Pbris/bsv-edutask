@@ -117,9 +117,8 @@ describe('Logging into the system', () => {
     })
 
 
-
     it('adds a new todo at the last position when description field has data and add button is pressed', () => {
-        // cy.task('log', `Initial count: ${initialCount}`)
+        // should add a new todo when description field has data
         cy.get('input[type=text][placeholder="Add a new todo item"]').type('Test Todo')
         cy.get('input[type=submit][value="Add"]')
             .click()
@@ -132,6 +131,8 @@ describe('Logging into the system', () => {
     })
 
     it('strikes through the first unchecked todo when clicked', () => {
+        // click on the first unchecked todo
+        // and check that it has a line-through style
         cy.get('ul.todo-list .checker.unchecked')
             .first()
             .click()
@@ -142,6 +143,8 @@ describe('Logging into the system', () => {
     });
 
     it('removes strike through the first checked todo when clicked', () => {
+        // click on the first checked todo
+        // and check that it has no line-through style
         cy.get('ul.todo-list .checker.checked')
             .first()
             .click()
@@ -152,6 +155,8 @@ describe('Logging into the system', () => {
     });
 
     it('removes a todo item when its remove button is clicked', () => {
+        // click on the first todo item
+        // and check that it is removed from the list
         cy.get('ul.todo-list li')
             .first()
             .as('toDelete')
