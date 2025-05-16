@@ -33,7 +33,6 @@ class UserController(Controller):
             users = self.dao.find({'email': email})
             if len(users) == 1:
                 return users[0]
-
         except Exception as e:
             raise
 

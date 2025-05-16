@@ -2,7 +2,7 @@ import Converter from '../../src/Util/Converter'
 
 
 
-describe('Logging into the system', () => {
+describe('Running tests for R8', () => {
     // define variables that we need on multiple occasions
     let uid // user id
     let email // email of the user
@@ -85,18 +85,18 @@ describe('Logging into the system', () => {
         cy.viewport(1280, 1200)
     })
 
-    it('checks that add button is not enabled when no description field data', () => {
+    it('checks that add button is not enabled when no description field data (R8UC1 1.1)', () => {
         // make sure that Add button is not clickable if nothing in description field
         cy.get('input[type=submit][value="Add"]').scrollIntoView().should('be.disabled');
     })
 
-    it('checks that add button is enabled when description field has data', () => {
+    it('checks that add button is enabled when description field has data (R8UC1 1.2)', () => {
         // make sure that Add button is clickable if something is in description field
         cy.get('input[type=text][placeholder="Add a new todo item"]').type('Test Todo')
         cy.get('input[type=submit][value="Add"]').scrollIntoView().should('be.not.disabled');
     })
 
-    it('presses add todo when description field has no data', () => {
+    it('presses add todo when description field has no data (R8UC1 2.1)', () => {
         // should not add a new todo when description field is empty
         cy.get('ul.todo-list li')
             .its('length')
@@ -117,7 +117,7 @@ describe('Logging into the system', () => {
     })
 
 
-    it('adds a new todo at the last position when description field has data and add button is pressed', () => {
+    it('adds a new todo at the last position when description field has data and add button is pressed(R8UC1 2.2)', () => {
         // should add a new todo when description field has data
         cy.get('input[type=text][placeholder="Add a new todo item"]').type('Test Todo')
         cy.get('input[type=submit][value="Add"]')
@@ -130,7 +130,7 @@ describe('Logging into the system', () => {
             .should('contain.text', 'Test Todo')
     })
 
-    it('strikes through the first unchecked todo when clicked', () => {
+    it('strikes through the first unchecked todo when clicked(R8UC2 1.1)', () => {
         // click on the first unchecked todo
         // and check that it has a line-through style
         cy.get('ul.todo-list .checker.unchecked')
@@ -142,7 +142,7 @@ describe('Logging into the system', () => {
             .and('contain', 'line-through')
     });
 
-    it('removes strike through the first checked todo when clicked', () => {
+    it('removes strike through the first checked todo when clicked(R8UC2 1.2)', () => {
         // click on the first checked todo
         // and check that it has no line-through style
         cy.get('ul.todo-list .checker.checked')
@@ -154,7 +154,7 @@ describe('Logging into the system', () => {
             .and('contain', 'none')
     });
 
-    it('removes a todo item when its remove button is clicked', () => {
+    it('removes a todo item when its remove button is clicked(R8UC3 1.1)', () => {
         // click on the first todo item
         // and check that it is removed from the list
         cy.get('ul.todo-list li')
